@@ -1,0 +1,198 @@
+*{margin:0;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+}
+
+body{
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:14px;
+	line-height:1.42857143;
+}
+
+/*±³¾°ÑùÊ½*/
+.lcb-login{
+	background-image:url(../img/Onepiece7.jpeg);
+	background-size:cover;
+	background-position:center center;
+	background-attachment:fixed;
+	padding-top:40px;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -ms-flexbox;
+	display: flex;
+
+	-webkit-align-items:center;
+	-ms-align-items:center;
+	align-items:center;
+
+	-webkit-box-align:center;
+	-moz-box-align:center;
+
+	-webkit-box-pack:center;
+	box-pack:center;
+	-moz-pack:center;
+	-ms-flex-pack:center;
+
+	-webkit-justify-content:center;
+	justify-content:center;
+}
+
+.lcb-login-main{
+	max-width:420px;
+	text-align:center;
+	padding:20px;
+	padding-bottom:60px;
+	position:relative;
+	top:50px;
+		/*background:#fff;*/
+}
+
+.lcb-login-logo{
+	font-size:85px;
+	color:#fff;
+	text-shadow: 0px 0 10px rgba(0,0,0,0.3);
+	margin:0;
+	margin-bottom:15px;
+
+}
+
+.lcb-login-box-login{
+	display:block;
+}
+
+.lcb-login-box{
+	background-color:#fff;
+	border-radius:3px;
+	padding:20px;
+	border:1px solid #e3e3e3;
+	position:relative;
+	z-index:1;
+	box-shadow: 0 0 20px 3px rgba(0,0,0,0.1);
+}
+
+.lcb-login-box-head{
+	color:#555;
+	padding-bottom:10px;
+	margin-bottom:20px;
+	border-bottom:1px solid #ccc;
+	font-size:1.5em;
+}
+
+.form-group{
+	margin-bottom:20px;
+}
+
+.jvFloat{
+	display:block;
+	margin:0;
+	position:relative;
+	width:300px;
+}
+
+.form-control{
+	height: auto;
+	font-size: 14px;
+	padding:10px;
+	display:block;
+	width:100%;
+	line-height: 1.42857143;
+	border:1px solid #ccc;
+	border-radius: 3px;
+}
+
+.has-error{
+	border:1px solid #a94442;
+	box-shadow:inset 0 0px 1px rgba(0, 0, 0, 0.75);
+	outline:none;
+}
+
+.has-error:focus{
+	box-shadow:0px 0px 8px rgba(0,0,0,0.5);
+}
+
+.help-block{
+	color:#a94442;
+	display:none;
+	padding-top:8px;
+}
+
+.lcb-login-box-bottom{
+	overflow:hidden;
+}
+
+.pull-left{
+	float:left;
+	cursor:pointer;
+	color:#288bc4;
+	margin-top:15px;
+}
+
+.pull-left:hover{
+	border-bottom:1px solid #288bc4;
+}
+
+.pull-right{
+	cursor:pointer;
+	background:#5bc0de;
+	border:none;
+	border-radius:3px;
+	height:40px;
+	float:right;
+	margin:6px 0px 6px 10px;
+	font-weight:400;
+	font-size:18px;
+	color:white;
+}
+
+.pull-right:hover{
+	background:#31b0d5;
+	border-color:#269abc;
+}
+
+
+/*×¢²áÒ³Ãæ*/
+.lcb-login-box-registration{
+	display:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
