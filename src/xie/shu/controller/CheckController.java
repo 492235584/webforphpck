@@ -39,13 +39,16 @@ public class CheckController {
 			String downloadPath = "E:\\phpcheckfile\\download\\" + date;
 			//上传文件原始名称
 			String originalFilename = checkfile.getOriginalFilename();
-			//指定要保存的文件
-			File doc = new File(filePath);
-			doc.mkdir();//创建文件夹
+			//创建上传的文件夹
+			File updoc = new File(filePath);
+			updoc.mkdir();
+			//创建保存的文件夹
+			File downdoc = new File(downloadPath);
+			downdoc.mkdir();
 			//上传文件的全限定名
-			String phpFilePath = filePath+"//"+originalFilename;
+			String phpFilePath = filePath+"\\"+originalFilename;
 			//处理后文件的全限定名（提供下载）
-			String txtFilePath = downloadPath+"//"+originalFilename.replace(".php", ".txt");
+			String txtFilePath = downloadPath+"\\"+originalFilename.replace(".php", ".txt");
 			//将内存中的文件写入磁盘
 			File file = new File(phpFilePath);
 			checkfile.transferTo(file);
