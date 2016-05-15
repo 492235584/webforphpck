@@ -5,12 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-2.0.0.min.js"></script>
-<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-ui"></script>
+<script type="text/javascript" src="/webforphpck/resources/js/jquery2.0.0.min.js"></script>
 <link href="/webforphpck/resources/css/bootstrap.min.css" rel="stylesheet">
-<!--<link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
--->
-<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/bootstrap.min.js"></script>
 <link href="/webforphpck/resources/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
 <link href="/webforphpck/resources/css/bootstrap.min.css" rel="stylesheet">
 <script src="/webforphpck/resources/js/fileinput.js" type="text/javascript"></script>
@@ -58,9 +54,7 @@
 
 	<div class="row-fluid">		
 			<div class="col-md-8" >
-				<div class="checkbox">
-	  		 		<label><a href="/webforphpck/download.action">下载</a></label>
-				</div>	
+				<button id="txtdownloadbutton" type="button" class="btn btn-primary">下载选中</button>
 				<table class="table">
 			        <thead>
 			          <tr>
@@ -72,8 +66,8 @@
 			        <tbody>				
 						<c:forEach items="${list }" var ="his" varStatus="status">
 						<tr>
-							<th><input type="checkbox" class="checkbox" /></th>
-				            <th><a href="/webforphpck/download.action?address=${his.path}&filename=${his.name}">${his.name}</a></th>
+							<th><input type="checkbox" class="checkbox" /><p hidden="true">${his.path}</p></th>
+				            <th><a href="">${his.name}</a></th>
 				            <th>${his.createtime}</th>
 						</tr>	            
 						</c:forEach>
@@ -150,6 +144,42 @@
         //allowedFileTypes: ['image', 'video', 'flash'],
         
 	});
-   
+    
+    $("#txtdownloadbutton").click(function() {
+    	var data = [];
+    	$(":checked").each(function(){
+    	  data.push( $(this).next().text() );
+    	});
+    	alert(data); 
+      var xhr = createXHR();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    var getvalue = xhr.responseText;
+                    if(getvalue == "1"){
+                    }else{
+                        alert("Password error!");
+                    }
+                }
+            }
+        }
+        xhr.open("post","/webforphpck/download.action?time="+new Date().getTime())
+        xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        xhr.send("checkfiles="+data);
+    } );
+    
+    function createXHR(){
+        var xhr = null;
+        try{
+            xhr = new ActiveXObject("microsoft.xmlhttp");
+        }catch(e){
+            try{
+                xhr = new XMLHttpRequest();
+            }catch(e){
+                window.alert("ajax in login.js error");
+            }
+        }
+        return xhr;
+    }
 </script>
 </html>

@@ -70,19 +70,23 @@ public class CheckController {
 	
 	//下载
 	@RequestMapping("/download.action")  
-	public void download(HttpServletResponse res,String address,String filename) throws IOException {  
-	    OutputStream os = res.getOutputStream();  
-	    try {  
-	        res.reset();  
-	        res.setHeader("Content-Disposition", "attachment; filename="+filename);  
-	        res.setContentType("application/octet-stream; charset=utf-8");  
-	        os.write(FileUtils.readFileToByteArray(new File(address)));  
-	        os.flush();  
-	    } finally {  
-	        if (os != null) {  
-	            os.close();  
-	        }  
-	    }  
+	public void download(HttpServletResponse res,String address,String filename,String checkfiles) throws IOException {
+		String [] mycheckfiles = checkfiles.split(",");
+		for(String s : mycheckfiles){
+			System.out.println("------------"+s+"-------------");
+		}
+//	    OutputStream os = res.getOutputStream();  
+//	    try {  
+//	        res.reset();  
+//	        res.setHeader("Content-Disposition", "attachment; filename="+filename);  
+//	        res.setContentType("application/octet-stream; charset=utf-8");  
+//	        os.write(FileUtils.readFileToByteArray(new File(address)));  
+//	        os.flush();
+//	    } finally {
+//	        if (os != null) {  
+//	            os.close();  
+//	        }  
+//	    }  
 	}  
 	
 	@RequestMapping("/showlist.action")  
