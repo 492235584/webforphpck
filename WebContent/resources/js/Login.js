@@ -22,7 +22,7 @@ window.onload = function() {
                     if(xhr.status==200){
                         var getvalue = xhr.responseText;
                         if(getvalue == "1"){
-                            location.href = "/webforphpck/checkpage.jsp";
+                            location.href = "/webforphpck/loginshow.action";
                         }else{
                             alert("Password error!");
                         }
@@ -70,7 +70,7 @@ function createXHR(){
         try{
             xhr = new XMLHttpRequest();
         }catch(e){
-            window.alert("��������̫��");
+            window.alert("ajax in login.js error");
         }
     }
     return xhr;

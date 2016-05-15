@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -55,7 +58,7 @@ public class CheckController {
 			//产生一条history ---add1.1
 			History history = new History();
 			history.setUserId((int)session.getAttribute("userId"));
-			history.setName((String)session.getAttribute("name"));
+			history.setName(originalFilename);
 			history.setPath(txtFilePath);
 			history.setCreatetime(sformat.parse(sdate));
 			//调用service处理上传的文件 ---change1.1
@@ -65,14 +68,15 @@ public class CheckController {
 		return "checkpage.jsp";
 	}
 	
+	//下载
 	@RequestMapping("/download.action")  
-	public void download(HttpServletResponse res) throws IOException {  
+	public void download(HttpServletResponse res,String address,String filename) throws IOException {  
 	    OutputStream os = res.getOutputStream();  
 	    try {  
 	        res.reset();  
-	        res.setHeader("Content-Disposition", "attachment; filename=dict.txt");  
+	        res.setHeader("Content-Disposition", "attachment; filename="+filename);  
 	        res.setContentType("application/octet-stream; charset=utf-8");  
-	        os.write(FileUtils.readFileToByteArray(new File("D:\\left.txt")));  
+	        os.write(FileUtils.readFileToByteArray(new File(address)));  
 	        os.flush();  
 	    } finally {  
 	        if (os != null) {  
@@ -80,4 +84,22 @@ public class CheckController {
 	        }  
 	    }  
 	}  
+	
+	@RequestMapping("/showlist.action")  
+	public String showDownloadList(HttpServletRequest request,int pagenum,HttpSession session) throws IOException {
+		//获取初始页面行数
+		int num = (pagenum - 1) * 5;
+		List<History> list = new ArrayList<History>();
+		//从数据库取出数据
+		list = checkService.showList(num);
+		//记录总行数量
+		int count = checkService.getCount((Integer)session.getAttribute("userId"));
+		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		
+		return "checkpage";
+	}
+	
+	
+	
 }

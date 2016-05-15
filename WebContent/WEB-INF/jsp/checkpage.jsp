@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,30 +61,49 @@
 				<div class="checkbox">
 	  		 		<label><a href="/webforphpck/download.action">下载</a></label>
 				</div>	
-			<table class="table">
-		        <thead>
-		          <tr>
-		            <th>选择</th>
-		            <th>文件名</th>
-		            <th>创建者</th>
-		            <th>时间</th>
-		          </tr>
-		        </thead>
-		        <tbody>
-		          <tr>
-		            <td><label>1.<input type="checkbox" value=""></label></td>
-		            <td>showController.txt</td>
-		            <td>李狗蛋</td>
-		            <td>2016.5.7</td>
-		          </tr>
-		        </tbody>
-		    </table>
-			<nav>
-			  <ul class="pager">
-			    <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
-			    <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
-			  </ul>
-			</nav>      			
+				<table class="table">
+			        <thead>
+			          <tr>
+			            <th>选择</th>
+			            <th>文件名</th>
+			            <th>创建时间</th>
+			          </tr>
+			        </thead>
+			        <tbody>				
+						<c:forEach items="${list }" var ="his" varStatus="status">
+						<tr>
+							<th><input type="checkbox" class="checkbox" /></th>
+				            <th><a href="/webforphpck/download.action?address=${his.path}&filename=${his.name}">${his.name}</a></th>
+				            <th>${his.createtime}</th>
+						</tr>	            
+						</c:forEach>
+			        </tbody>
+			    </table>
+				<nav>
+				  <ul class="pagination">
+				    <li>
+				      <a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    <%
+				    
+				    	for(int i = 0; i < ((Integer)request.getAttribute("count")); i++){
+				    		int pagenum = 0;
+					    	if(i % 5 == 0){
+					    		pagenum = (i / 5) + 1;
+								String html = "<li><a class=\"txt-php-show\" href=\"/webforphpck/showlist.action?pagenum="+ pagenum +"\">"+ pagenum +"</a></li>";
+						    	out.write(html);
+					    	}
+				    	}
+				    %>
+				    <li>
+				      <a href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>   			
 			</div>
 		<div class="col-md-4">				
 			<form enctype="multipart/form-data">

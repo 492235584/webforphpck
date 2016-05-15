@@ -1,6 +1,8 @@
 package xie.shu.service.impl;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 import manage.Service;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import xie.shu.mapper.HistoryMapper;
 import xie.shu.po.History;
+import xie.shu.po.HistoryExample;
 //import manage.Service;
 import xie.shu.service.CheckService;
 
@@ -23,7 +26,6 @@ public class CheckServiceImpl implements CheckService{
 		//调用phpcheck接口处理
 		Service checkservice = new Service();
 		try {
-			System.out.println("-----------------------------------------------------------------");
 			checkservice.checkFile(inputPath, outputPath);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -35,5 +37,29 @@ public class CheckServiceImpl implements CheckService{
 		historyMaqqer.insert(history);
 		
 	}
+
+	@Override
+	public List<History> showList(int num) {
+		//存储信息的list
+		List<History> list = new ArrayList<History>();
+		//查询
+		list = historyMaqqer.selectbylimitnum(num);
+		
+		return list;
+	}
+
+	@Override
+	//根据userId获得条目总数
+	public int getCount(int userId) {
+		
+		HistoryExample example = new HistoryExample();
+		example.or()
+		.andUserIdEqualTo(userId);
+		int count = historyMaqqer.countByExample(example);
+		
+		return count;
+	}
+	
+	
 	
 }

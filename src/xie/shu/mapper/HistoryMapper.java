@@ -15,6 +15,8 @@ public interface HistoryMapper {
     int insertSelective(History record);
 
     List<History> selectByExample(HistoryExample example);
+    
+    List<History> selectbylimitnum(int num);
 
     int updateByExampleSelective(@Param("record") History record, @Param("example") HistoryExample example);
 
