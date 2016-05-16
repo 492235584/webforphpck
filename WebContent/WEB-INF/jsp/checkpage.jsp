@@ -150,36 +150,7 @@
     	$(":checked").each(function(){
     	  data.push( $(this).next().text() );
     	});
-    	alert(data); 
-      var xhr = createXHR();
-        xhr.onreadystatechange = function(){
-            if(xhr.readyState==4){
-                if(xhr.status==200){
-                    var getvalue = xhr.responseText;
-                    if(getvalue == "1"){
-                    }else{
-                        alert("Password error!");
-                    }
-                }
-            }
-        }
-        xhr.open("post","/webforphpck/download.action?time="+new Date().getTime())
-        xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
-        xhr.send("checkfiles="+data);
-    } );
-    
-    function createXHR(){
-        var xhr = null;
-        try{
-            xhr = new ActiveXObject("microsoft.xmlhttp");
-        }catch(e){
-            try{
-                xhr = new XMLHttpRequest();
-            }catch(e){
-                window.alert("ajax in login.js error");
-            }
-        }
-        return xhr;
-    }
+    	location.href = "/webforphpck/download.action?checkfiles="+data;  	
+    });
 </script>
 </html>
