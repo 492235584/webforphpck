@@ -41,11 +41,14 @@
 		<% 
 			if(session.getAttribute("name") != null ){
 		%>
-		<h4>您好，<%=session.getAttribute("name")%></h4>
+		<div class ="row">
+		您好，<%=session.getAttribute("name")%>
+		<button id="checkoutbutton" type="button" class="btn btn-danger">注销</button>
+		</div>
 		<% 
 			}else{
 		%>		
-		<h4>游客请先登入</h4>
+		<h4>游客请先登入</h4><button id="loginbutton" type="button" class="btn btn-primary">登入</button>
 		<%
 			}
 		%>
@@ -86,7 +89,7 @@
 				    		int pagenum = 0;
 					    	if(i % 5 == 0){
 					    		pagenum = (i / 5) + 1;
-								String html = "<li><a class=\"txt-php-show\" href=\"/webforphpck/showlist.action?pagenum="+ pagenum +"\">"+ pagenum +"</a></li>";
+								String html = "<li><a class=\"txt-php-show\" href=\"/webforphpck/check/showlist.action?pagenum="+ pagenum +"\">"+ pagenum +"</a></li>";
 						    	out.write(html);
 					    	}
 				    	}
@@ -136,7 +139,7 @@
   	
     $("#file-1").fileinput({
 		//language: 'zh',
-        uploadUrl: '/webforphpck/docheck.action', // you must set a valid URL here else you will get an error
+        uploadUrl: '/webforphpck/check/docheck.action', // you must set a valid URL here else you will get an error
         allowedFileExtensions : ['php', 'png', 'gif', 'doc', 'docx'],
         overwriteInitial: false,
         maxFileSize: 1000,
@@ -150,7 +153,7 @@
     	$(":checked").each(function(){
     	  data.push( $(this).next().text() );
     	});
-    	location.href = "/webforphpck/download.action?checkfiles="+data;  	
+    	location.href = "/webforphpck/check/download.action?checkfiles="+data;  	
     });
 </script>
 </html>

@@ -24,14 +24,14 @@ window.onload = function() {
                     if(xhr.status==200){
                         var getvalue = xhr.responseText;
                         if(getvalue == "1"){
-                            location.href = "/webforphpck/loginshow.action";
+                            location.href = "/webforphpck/login/loginshow.action";
                         }else{
                             alert("Password error!");
                         }
                     }
                 }
             };
-            xhr.open("post","/webforphpck/login.action?time="+new Date().getTime());
+            xhr.open("post","/webforphpck/login/login.action?time="+new Date().getTime());
             xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
             xhr.send("name="+username+"&password="+password);
         };

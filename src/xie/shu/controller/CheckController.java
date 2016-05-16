@@ -25,6 +25,7 @@ import xie.shu.util.CreateUUID;
 import xie.shu.util.ZipUtil;
 
 @Controller
+@RequestMapping("check")
 public class CheckController {
 
 	@Autowired
@@ -32,7 +33,7 @@ public class CheckController {
 
 	// 处理上传文件
 	@RequestMapping("/docheck.action")
-	public String checkUploadFile(MultipartFile checkfile, HttpSession session)
+	public void checkUploadFile(MultipartFile checkfile, HttpSession session)
 			throws Exception {
 
 		// 进行文件上传
@@ -76,8 +77,6 @@ public class CheckController {
 			// 调用service处理上传的文件 ---change1.1 
 			checkService.docheck(phpFilePath, txtFilePath, history);
 		}
-
-		return "forward:/loginshow.action";
 	}
 	
 	// 下载  @RequestBody byte[]bytes获取请求体

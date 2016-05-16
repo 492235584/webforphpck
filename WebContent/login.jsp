@@ -13,7 +13,7 @@
 		<div class="lcb-login-main">
 			<h1 class="lcb-login-logo">Login</h1>
 			<div class="lcb-login-boxes">
-				<form class="lcb-login-box lcb-login-box-login validate" action="/MyVoteSystem/MyServlet?method=login" method="post">
+				<form class="lcb-login-box lcb-login-box-login validate" action="" method="post">
 					<h2 class="lcb-login-box-head">login</h2>
 					<div class="form-group">
 						<div class="jvFloat">
@@ -32,7 +32,7 @@
 						<button class="btn-info btn btn-lg pull-right" type="button" id="visitor">visitor</button>
 					</div>
 				</form>
-				<form id="resgiterform" class="lcb-login-box lcb-login-box-registration validate" action="/webforphpck/register.action" method="post" style="display:none;">
+				<form id="resgiterform" class="lcb-login-box lcb-login-box-registration validate" action="/webforphpck/login/register.action" method="post" style="display:none;">
 					<h2 class="lcb-login-box-head">register</h2>
 					<div class="form-group">
 						<div class="jvFloat">
