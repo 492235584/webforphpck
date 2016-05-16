@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="/webforphpck/resources/js/jquery2.0.0.min.js"></script>
+<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-2.0.0.min.js"></script>
+<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/bootstrap.min.js"></script>
 <link href="/webforphpck/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/webforphpck/resources/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
 <link href="/webforphpck/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -43,17 +44,16 @@
 		%>
 		<div class ="row">
 		您好，<%=session.getAttribute("name")%>
-		<button id="checkoutbutton" type="button" class="btn btn-danger">注销</button>
+		<button id="logoutbutton" type="button" class="btn btn-danger">注销</button>
 		</div>
 		<% 
 			}else{
 		%>		
-		<h4>游客请先登入</h4><button id="loginbutton" type="button" class="btn btn-primary">登入</button>
+		<h4>游客请先登入</h4>
 		<%
 			}
 		%>
 	</div>	
-	<!-- Large modal -->
 
 	<div class="row-fluid">		
 			<div class="col-md-8" >
@@ -84,15 +84,18 @@
 				      </a>
 				    </li>
 				    <%
-				    
-				    	for(int i = 0; i < ((Integer)request.getAttribute("count")); i++){
-				    		int pagenum = 0;
-					    	if(i % 5 == 0){
-					    		pagenum = (i / 5) + 1;
-								String html = "<li><a class=\"txt-php-show\" href=\"/webforphpck/check/showlist.action?pagenum="+ pagenum +"\">"+ pagenum +"</a></li>";
-						    	out.write(html);
+				        if(request.getAttribute("count") != null){
+					    	for(int i = 0; i < ((Integer)request.getAttribute("count")); i++){
+					    		int pagenum = 0;
+						    	if(i % 5 == 0){
+						    		pagenum = (i / 5) + 1;
+									String html = "<li><a class=\"txt-php-show\" href=\"/webforphpck/check/showlist.action?pagenum="+ pagenum +"\">"+ pagenum +"</a></li>";
+							    	out.write(html);
+						    	}
 					    	}
-				    	}
+				        }else{
+				        	out.write("<button id=\"loginbutton\" type=\"button\" class=\"btn btn-primary\">登入</button>");
+				        }
 				    %>
 				    <li>
 				      <a href="#" aria-label="Next">
@@ -124,16 +127,6 @@
   </div>
 </div>
 
-<!-- Small modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      ...
-    </div>
-  </div>
-</div>
 </body>
 <script>
   	
@@ -154,6 +147,12 @@
     	  data.push( $(this).next().text() );
     	});
     	location.href = "/webforphpck/check/download.action?checkfiles="+data;  	
+    });
+    $("#logoutbutton").click(function() {
+    	location.href = "/webforphpck/login/logout.action";
+    });
+    $("#loginbutton").click(function() {
+    	location.href = "/webforphpck/login.jsp";
     });
 </script>
 </html>

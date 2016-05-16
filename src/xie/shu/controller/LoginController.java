@@ -49,8 +49,9 @@ public class LoginController {
 	}
 
 	@RequestMapping("/logout.action")
-	public String login() throws Exception {
-		return null;
+	public String login(HttpSession session) throws Exception {
+		session.invalidate();
+		return "checkpage";
 	}
 	
 	//页面初始显示

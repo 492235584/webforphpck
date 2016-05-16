@@ -25,7 +25,7 @@ import xie.shu.util.CreateUUID;
 import xie.shu.util.ZipUtil;
 
 @Controller
-@RequestMapping("check")
+@RequestMapping("/check")
 public class CheckController {
 
 	@Autowired

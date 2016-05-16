@@ -22,11 +22,12 @@ public class CheckServiceImpl implements CheckService{
 	//处理文件，并插入一条history记录
 	@Override
 	public void docheck(String inputPath, String outputPath, History history) {
-	
+		//无意义，仅供调用方法
+		int flag = 0; 
 		//调用phpcheck接口处理
 		Service checkservice = new Service();
 		try {
-			checkservice.checkFile(inputPath, outputPath);
+			checkservice.checkFile(inputPath, outputPath, flag);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			//发生错误直接停止程序运行
