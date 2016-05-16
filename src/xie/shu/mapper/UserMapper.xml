@@ -148,6 +148,10 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <!-- 获取自增主键 -->
+  <select id="getLastUserId" resultType="java.lang.Integer" >
+    select LAST_INSERT_ID()
+  </select>
   <update id="updateByExampleSelective" parameterType="map" >
     update user
     <set >

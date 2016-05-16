@@ -1,4 +1,6 @@
 window.onload = function() {
+		var registerFrom = $("#resgiterform");
+		var register = $("#register");
         var username = $("#username");
         var username_haserror = $(".has-error");
         var help_block = $(".help-block");
@@ -10,7 +12,7 @@ window.onload = function() {
         //�ο͵�¼
         visitor.click(function(){
             window.location = "Onepiece.html";
-        })
+        });
 
         //��¼��֤
         submit.onclick = function(){
@@ -28,11 +30,11 @@ window.onload = function() {
                         }
                     }
                 }
-            }
-            xhr.open("post","/webforphpck/login.action?time="+new Date().getTime())
+            };
+            xhr.open("post","/webforphpck/login.action?time="+new Date().getTime());
             xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
             xhr.send("name="+username+"&password="+password);
-        }
+        };
 
         //�����Ч��
         username.attr("class","required form-control");
@@ -47,19 +49,32 @@ window.onload = function() {
             }else{
                 help_block.css("display","none");
             }
-        })
+        });
 
         //�л�ע��
         registration.click(function(){
             $(".lcb-login-box-login").css("display","none");
             $(".lcb-login-box-registration").css("display","block");
-        })
+        });
         have_account.click(function(){
             $(".lcb-login-box-login").css("display","block");
             $(".lcb-login-box-registration").css("display","none");
            /* $(".form-reg").val("");*/
-        })
-    }
+        });
+        	register.click(function register(){
+        	var name = $("#regname").val();
+        	var password = $("#regpassword").val();
+        	var confirmpassword = $("#confirmpassword").val();
+        	//参数校验
+        	if(password != confirmpassword){
+        		alert("两次密码不一致");
+        	}else{
+        		registerFrom.submit();
+        	}
+        });
+    };
+
+
 
 //����ajax����
 function createXHR(){

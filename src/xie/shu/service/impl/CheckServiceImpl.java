@@ -39,11 +39,13 @@ public class CheckServiceImpl implements CheckService{
 	}
 
 	@Override
-	public List<History> showList(int num) {
+	public List<History> showList(int num, int userId) {
 		//存储信息的list
 		List<History> list = new ArrayList<History>();
 		//查询
-		list = historyMaqqer.selectbylimitnum(num);
+		list = historyMaqqer.selectbylimitnum(num, userId);
+		System.out.println("------------------------------------");
+		System.out.println(list.size());
 		
 		return list;
 	}

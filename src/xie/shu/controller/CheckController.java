@@ -77,7 +77,7 @@ public class CheckController {
 			checkService.docheck(phpFilePath, txtFilePath, history);
 		}
 
-		return "";
+		return "forward:/loginshow.action";
 	}
 	
 	// 下载  @RequestBody byte[]bytes获取请求体
@@ -117,11 +117,12 @@ public class CheckController {
 		// 获取初始页面行数
 		int num = (pagenum - 1) * 5;
 		List<History> list = new ArrayList<History>();
+		//获取userid
+		int userId = (Integer) session.getAttribute("userId");
 		// 从数据库取出数据
-		list = checkService.showList(num);
+		list = checkService.showList(num, userId);
 		// 记录总行数量
-		int count = checkService.getCount((Integer) session
-				.getAttribute("userId"));
+		int count = checkService.getCount(userId);
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 

@@ -32,26 +32,26 @@
 						<button class="btn-info btn btn-lg pull-right" type="button" id="visitor">visitor</button>
 					</div>
 				</form>
-				<form class="lcb-login-box lcb-login-box-registration validate" style="display:none;">
+				<form id="resgiterform" class="lcb-login-box lcb-login-box-registration validate" action="/webforphpck/register.action" method="post" style="display:none;">
 					<h2 class="lcb-login-box-head">register</h2>
 					<div class="form-group">
 						<div class="jvFloat">
-							<input class="form-control" type="text" id="regname" name="regname" placeholder="Username" />
+							<input class="form-control" type="text" id="regname" name="name" placeholder="Username" />
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="jvFloat">
-							<input class="form-control" type="text" id="regpassword" name="regpassword" placeholder="Password" />
+							<input class="form-control" type="text" id="regpassword" name="password" placeholder="Password" />
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="jvFloat">
-							<input class="form-control" type="text" placeholder="Confirm Password" />
+							<input class="form-control" type="text" id="confirmpassword" placeholder="Confirm Password" />
 						</div>
 					</div>
 					<div class="lcb-login-box-bottom">
 						<div class="links pull-left" id="have_account">existing account</div>
-						<button class="btn-info btn btn-lg pull-right" id="register" type="button">register</button>
+						<button class="btn-info btn btn-lg pull-right" id="register" type="button" >register</button>
 					</div>
 				</form>
 			</div>

@@ -18,6 +18,7 @@ import xie.shu.service.CheckService;
 import xie.shu.service.LoginService;
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
 	
 	@Autowired
@@ -25,7 +26,7 @@ public class LoginController {
 	@Autowired
 	private CheckService checkService;
 
-	//参数自动注入
+	//用户登入
 	@RequestMapping("/login.action")
 	public void login(Model model,User user, HttpServletResponse response, HttpSession session) throws Exception {
 		//调用service
@@ -38,7 +39,6 @@ public class LoginController {
 			//保存会话
 			session.setAttribute("userId", u.getUserId());
 			session.setAttribute("name", u.getName());
-			System.out.println(u.getName());
 			session.setAttribute("department", u.getDepartment());
 		}else{
 			//登入失败
@@ -53,14 +53,16 @@ public class LoginController {
 		return null;
 	}
 	
+	//页面初始显示
 	@RequestMapping("/loginshow.action")
 	public String loginShow(HttpServletRequest request,HttpSession session) throws Exception {
 		//默认显示前五条信息
 		List<History> list = new ArrayList<History>();
-		
-		list = checkService.showList(0);
+		//获取userid
+		int userId = (Integer)session.getAttribute("userId");
+		list = checkService.showList(0, userId);
 		//从session中取出userid查询数据库
-		int count = checkService.getCount((Integer)session.getAttribute("userId"));
+		int count = checkService.getCount(userId);
 		//记录总行数
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
@@ -68,4 +70,18 @@ public class LoginController {
 		return "checkpage";
 		
 	}
+	
+	//用户注册
+	@RequestMapping("/register.action")
+	public String register(HttpSession session, User user){
+		//插入并返回插入后的数据（包括自增字段和默认字段）
+		User u = loginService.register(user);
+		//保存session
+		session.setAttribute("userId", u.getUserId());
+		session.setAttribute("name", u.getName());
+		session.setAttribute("department", u.getDepartment());
+		
+		return "forward:/login/loginshow.action";
+	}
+	
 }

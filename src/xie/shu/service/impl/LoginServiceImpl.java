@@ -29,5 +29,12 @@ public class LoginServiceImpl implements LoginService{
 			return users.get(0);
 		}
 	}
+	@Override
+	public User register(User user) {
+		userMapper.insert(user); 
+		int userId = userMapper.getLastUserId();
+		User u = userMapper.selectByPrimaryKey(userId);
+		return u;
+	}
 
 }

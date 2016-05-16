@@ -16,7 +16,7 @@ public interface HistoryMapper {
 
     List<History> selectByExample(HistoryExample example);
     
-    List<History> selectbylimitnum(int num);
+    List<History> selectbylimitnum(int num, int UserId);
 
     int updateByExampleSelective(@Param("record") History record, @Param("example") HistoryExample example);
 
