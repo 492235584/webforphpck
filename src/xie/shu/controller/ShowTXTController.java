@@ -2,9 +2,10 @@ package xie.shu.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/txt")
 public class ShowTXTController {
 	@RequestMapping("/show.action")
-	public void showTXT(String filepath) throws IOException {
+	public void showTXT(HttpServletResponse response, String filepath) throws IOException {
 		System.out.println(filepath);
 		File file = new File(filepath);
 		BufferedReader buf = new BufferedReader(new FileReader(file));
@@ -28,7 +29,9 @@ public class ShowTXTController {
 				buf.close();
 			}
 		}
-		System.out.println(txt);
+		//设置编码后发送
+		response.setCharacterEncoding("utf-8");
+		response.getWriter().write(txt.toString());
 
 	}
 }
