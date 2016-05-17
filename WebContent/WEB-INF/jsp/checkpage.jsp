@@ -70,7 +70,7 @@
 						<c:forEach items="${list }" var ="his" varStatus="status">
 						<tr>
 							<th><input type="checkbox" class="checkbox" /><p hidden="true">${his.path}</p></th>
-				            <th><a href="">${his.name}</a></th>
+				            <th><a class="filelook" href="javascript:void(0);" param_path="${his.path}">${his.name}</a></th>
 				            <th>${his.createtime}</th>
 						</tr>	            
 						</c:forEach>
@@ -117,7 +117,7 @@
 	</div>
 </div>
 <!-- Large modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+<button id="requesttxtshow" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
 
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
@@ -154,5 +154,26 @@
     $("#loginbutton").click(function() {
     	location.href = "/webforphpck/login.jsp";
     });
+    
+    //在线预览
+    $(".filelook").click(function(){
+    	
+	    var filepath = $(this).attr("param_path");
+		$.ajax({
+		  method: "POST",
+		  url: "/webforphpck/txt/show.action",
+		  data: { filepath : filepath }
+		}).done(function( msg ) {
+			//根据返回改变内容
+			var txt = $(".modal-content");
+			txt.text(msg);
+			//模拟点击触发弹框
+			var but = $("#requesttxtshow");
+			but.trigger("click");
+		});
+    });
+    
+    
+    
 </script>
 </html>
